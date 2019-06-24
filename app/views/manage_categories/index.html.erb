@@ -1,0 +1,7 @@
+<% @categories.each do |category| %>
+  <p>
+  <%= t("header.id") %>: <%= category.id %> &emsp;&emsp;&emsp;<%= t("header.category") %>: <%= category.name %> &emsp;&emsp;&emsp;&emsp;&emsp; <%= t "header.description" %> : <%= category.description %> &emsp;&emsp;&emsp;&emsp;
+    <%= link_to "Delete", delete_category_path(:id => category.id) %> &emsp;&emsp;<%= link_to "Create Tour", new_tour_path(:id => category.id) %>
+  </p>
+<% end %>
+<%= link_to "Add New Category", new_category_path %>

@@ -25,6 +25,7 @@ class UsersController < ApplicationController
         t("authentication.controllers.users_controller.flash.register_success")
       redirect_to signup_path
     else
+      @user = User.new
       flash["info"] =
         t("authentication.controllers.users_controller.flash.register_fail")
       render :new

@@ -1,23 +1,27 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <%= link_to "", root_path, id: "logo" %>
-    <nav> 
+    <nav>
       <ul class="nav navbar-nav navbar-right">
         <li> <%= link_to t("header.home"), root_path %> </li>
         <% if logged_in? %>
-        <li> <%= link_to t("header.edit"), edit_user_path(current_user) %> </li>
-        <% if User.roles[session[:role]] == User.roles[:admin] %>
+          <li> <%= link_to t("header.edit"), edit_user_path(current_user) %> </li>
+          <% if User.roles[session[:role]] == User.roles[:admin] %>
             <li> <%= link_to t("header.manage_users"), manage_users_path %> </li>
-            <li> <%= link_to t("header.manage_tours"), root_path %> </li>
-            <li> <%= link_to t("header.manage_booking_requests"), root_path %> </li>
+            <li> <%= link_to t("header.manage_tours"), view_tour_path %> </li>
+            <li> <%= link_to t("header.manage_booking_requests"), view_all_booking_request_path %> </li>
             <li> <%= link_to t("header.manage_user_reviews"), root_path %> </li>
             <li> <%= link_to t("header.manage_revenue"), root_path %> </li>
-            <li> <%= link_to t("header.manage_category"), root_path %> </li>
-        <% end %>
+            <li> <%= link_to t("header.manage_category"), view_category_path %> </li>
+          <% end %>
+          <% if User.roles[session[:role]] == User.roles[:user] %>
+            <li> <%= link_to t("header.my_booking"), view_booking_request_path %> </li>
+          <% end %>
         <% else %>
           <li> <%= link_to t("header.register"), signup_path %> </li>
           <li> <%= link_to t("header.login"), login_path %></li>
         <% end %>
+        <li> <%= link_to t("header.view_tour"), view_tour_path %> </li>
       </ul>
     </nav>
   </div>

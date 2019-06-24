@@ -1,0 +1,16 @@
+<%= form_for(@tour_details, url: new_tour_details_path) do |f| %>
+  <%= render "shared/form_error_messages", object: @tour_details %>
+  <%= f.label "Price" %>
+  <%= f.text_field :price %>
+  <%= f.label "Tour Total" %>
+  <%= f.text_field :tour_total %>
+  <%= f.label "User ID" %>
+  <%= f.text_field :user_id %>
+  <%= f.label "Time Start" %>
+  <%= f.text_field :time_start %>
+  <%= f.label "Time End" %>
+  <%= f.text_field :time_end %>
+  <%= f.label "Tour ID" %>
+  <%= f.text_field :tour_id %>
+  <%= f.submit "Create", class: "btn btn-primary" %>
+<% end %>

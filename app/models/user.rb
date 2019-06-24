@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :ratings, dependent: :destroy
+  has_many :tour_details, dependent: :destroy
+  has_many :tour_details, dependent: :destroy
+  has_many :bookings, dependent: :destroy
+
   enum role: {guess: 0, user: 1, admin: 2}
   validates :name,  presence: true,
    length: {maximum: Settings.name_maximum_length}

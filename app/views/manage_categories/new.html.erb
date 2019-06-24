@@ -1,0 +1,9 @@
+<%= form_for(@category, url: new_category_path) do |f| %>
+  <%= render "shared/form_error_messages", object: @category %>
+  <%= f.label "Name" %>
+  <%= f.text_field :name %>
+  <%= f.label "Description" %>
+  <%= f.text_field :description %>
+  <%= f.submit "Create", class: "btn btn-primary" %>
+<% end %>
+  

@@ -1,0 +1,10 @@
+<%= form_for(@booking,url: new_booking_request_path) do |f| %>
+  <%= render "shared/form_error_messages", object: @booking %>
+  <%= f.label "Number Of Person" %>
+  <%= f.text_field :book_total %>
+  <%= f.label "Tour Details ID" %>
+  <%= f.text_field :tour_detail_id %>
+  <%= f.label "User ID" %>
+  <%= f.text_field :user_id %>
+  <%= f.submit "Create Tour", class: "btn btn-primary" %>
+<% end %>

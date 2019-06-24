@@ -1,0 +1,8 @@
+<% @booking.each do |booking| %>
+  <p>
+    <%= t "header.booking_id" %>: <%= booking.id %> &emsp;&emsp;&emsp;&emsp;&emsp;
+    <%= t "header.book_total" %> : <%= booking.book_total %> &emsp;&emsp;&emsp;&emsp;&emsp;
+    <%= t "header.user_id" %> : <%= booking.user_id %>&emsp;&emsp;&emsp;&emsp;
+    <%= t "header.tour_detail_id" %> : <%= booking.tour_detail_id %>&emsp;&emsp;&emsp;&emsp;
+  </p>
+<% end %>
