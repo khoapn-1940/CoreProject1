@@ -1,0 +1,40 @@
+<% @review.each do |review| %>
+  <div class="container">
+    <div class="">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>Liked</th>
+            <th>Review Content</th>
+            <th>Tour Name</th>
+            <th>Tour Description </th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tr>
+          <td> <%= Like.where(:review_id => review.id).count %> </td>
+          <td> <%= review.content %> </td>
+          <td> <%= review.tour.name %> </td>
+          <td> <%= review.tour.description %> </td>
+          <td class="text-center">
+            <% if User.roles[session[:role]] == User.roles[:admin] %>
+                <%= link_to delete_my_reviews_path(:id => review.id), :class => "btn btn-danger btn-xs" do %>
+                <span class="glyphicon glyphicon-remove">Delete Review</span>
+                <% end %>
+            <% elsif User.roles[session[:role]] == User.roles[:user] %>
+             <% if Like.where(:review_id => review.id, :user_id => session[:user_id]).first.nil? %>
+              <%= link_to like_review_path(:id => review.id,:tour_id => review.tour_id), :class => "btn btn-info btn-xs", method: :post do %>
+                <span class="glyphicon glyphicon-edit">Like</span>
+              <% end%>
+              <% else %>
+              <%= link_to unlike_review_path(:id => review.id,:tour_id => review.tour_id), :class => "btn btn-info btn-xs", method: :post do %>
+                <span class="glyphicon glyphicon-edit">Unlike</span>
+              <% end%>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% end %>

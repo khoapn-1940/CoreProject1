@@ -30,10 +30,14 @@ Rails.application.routes.draw do
 
   get "/review_tour", to: "reviews#new"
   post "/review_tour", to: "reviews#create"
+  get "/view_all_review", to:"reviews#view_all_reviews"
   get "/view_my_reviews", to: "reviews#view_my_reviews"
+  get "/view_tour_review", to: "reviews#view_tour_reviews"
   get "/edit_my_reviews", to: "reviews#edit"
   post "/edit_my_reviews", to: "reviews#update"
   get "/delete_my_reviews", to: "reviews#destroy"
+  post "/like_review", to: "reviews#like"
+  post "/unlike_review", to: "reviews#unlike"
   resources :users, only: [:new, :edit, :update, :create]
   resources :manage_users, only: [:new, :edit, :update]
 end

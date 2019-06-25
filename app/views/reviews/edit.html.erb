@@ -10,8 +10,9 @@
   <body>
     <div id="logreg-forms">
       <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Leave A Review</h1>
-      <%= form_for(@review, :url => edit_my_reviews_path,:html => {:class => 'form-signin'}) do |f| %>
+      <%= form_for(@review, :url => edit_my_reviews_path,:html => {:class => 'form-signin'},:method => :POST) do |f| %>
         <%= render "shared/form_error_messages", object: @review %>
+        <%= f.text_field :id, class: "form-control" %>
         <%= f.text_field :content, class: "form-control", placeholder: "Content" %>
         <%= f.text_field :user_id, class: "form-control" %>
         <%= f.text_field :tour_id, class: "form-control" %>

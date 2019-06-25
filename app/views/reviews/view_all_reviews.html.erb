@@ -17,9 +17,6 @@
           <td> <%= review.tour.name %> </td>
           <td> <%= review.tour.description %> </td>
           <td class="text-center">
-            <%= link_to edit_my_reviews_path(:id => review.id), :class => "btn btn-info btn-xs" do %>
-              <span class="glyphicon glyphicon-edit">Edit Review</span>
-            <% end%>
             <%= link_to delete_my_reviews_path(:id => review.id), :class => "btn btn-danger btn-xs" do %>
               <span class="glyphicon glyphicon-remove">Delete Review</span>
             <% end %>

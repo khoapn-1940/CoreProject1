@@ -1,0 +1,91 @@
+Started GET "/like_review?id=2" for ::1 at 2019-06-25 23:25:17 +0700
+Processing by ReviewsController#like as HTML
+  Parameters: {"id"=>"2"}
+Yeaaaaaaaaaaaaaaaaaaaaa
+   (0.2ms)  BEGIN
+  ↳ app/controllers/reviews_controller.rb:51
+  User Load (1.0ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1
+  ↳ app/controllers/reviews_controller.rb:51
+  Review Load (1.0ms)  SELECT  `reviews`.* FROM `reviews` WHERE `reviews`.`id` = 2 LIMIT 1
+  ↳ app/controllers/reviews_controller.rb:51
+  Like Create (0.5ms)  INSERT INTO `likes` (`user_id`, `review_id`, `created_at`, `updated_at`) VALUES (5, 2, '2019-06-25 16:25:17', '2019-06-25 16:25:17')
+  ↳ app/controllers/reviews_controller.rb:51
+   (220.9ms)  COMMIT
+  ↳ app/controllers/reviews_controller.rb:51
+Redirected to http://localhost:3000/view_my_reviews
+Completed 302 Found in 246ms (ActiveRecord: 223.6ms)
+
+
+Started GET "/view_my_reviews" for ::1 at 2019-06-25 23:25:17 +0700
+Processing by ReviewsController#view_my_reviews as HTML
+  Rendering reviews/view_my_reviews.html.erb within layouts/application
+  Review Load (0.3ms)  SELECT `reviews`.* FROM `reviews` WHERE `reviews`.`user_id` = 5
+  ↳ app/views/reviews/view_my_reviews.html.erb:1
+  Tour Load (0.4ms)  SELECT  `tours`.* FROM `tours` WHERE `tours`.`id` = 1 LIMIT 1
+  ↳ app/views/reviews/view_my_reviews.html.erb:17
+  CACHE Tour Load (0.0ms)  SELECT  `tours`.* FROM `tours` WHERE `tours`.`id` = 1 LIMIT 1  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/reviews/view_my_reviews.html.erb:17
+  CACHE Tour Load (0.0ms)  SELECT  `tours`.* FROM `tours` WHERE `tours`.`id` = 1 LIMIT 1  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/reviews/view_my_reviews.html.erb:17
+  Rendered reviews/view_my_reviews.html.erb within layouts/application (8.4ms)
+  User Load (0.4ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1
+  ↳ app/helpers/sessions_helper.rb:25
+  Rendered layouts/_header.html.erb (3.1ms)
+Completed 200 OK in 50ms (Views: 46.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/like_review?id=2" for ::1 at 2019-06-25 23:25:17 +0700
+Processing by ReviewsController#like as HTML
+  Parameters: {"id"=>"2"}
+Yeaaaaaaaaaaaaaaaaaaaaa
+   (0.3ms)  BEGIN
+  ↳ app/controllers/reviews_controller.rb:51
+  User Load (0.8ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1
+  ↳ app/controllers/reviews_controller.rb:51
+  Review Load (0.6ms)  SELECT  `reviews`.* FROM `reviews` WHERE `reviews`.`id` = 2 LIMIT 1
+  ↳ app/controllers/reviews_controller.rb:51
+  Like Create (1.2ms)  INSERT INTO `likes` (`user_id`, `review_id`, `created_at`, `updated_at`) VALUES (5, 2, '2019-06-25 16:25:17', '2019-06-25 16:25:17')
+  ↳ app/controllers/reviews_controller.rb:51
+Started GET "/view_my_reviews" for ::1 at 2019-06-25 23:25:17 +0700
+Processing by ReviewsController#view_my_reviews as HTML
+  Rendering reviews/view_my_reviews.html.erb within layouts/application
+  Review Load (1.8ms)  SELECT `reviews`.* FROM `reviews` WHERE `reviews`.`user_id` = 5
+  ↳ app/views/reviews/view_my_reviews.html.erb:1
+  Tour Load (0.4ms)  SELECT  `tours`.* FROM `tours` WHERE `tours`.`id` = 1 LIMIT 1
+  ↳ app/views/reviews/view_my_reviews.html.erb:17
+  CACHE Tour Load (0.0ms)  SELECT  `tours`.* FROM `tours` WHERE `tours`.`id` = 1 LIMIT 1  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/reviews/view_my_reviews.html.erb:17
+  CACHE Tour Load (0.0ms)  SELECT  `tours`.* FROM `tours` WHERE `tours`.`id` = 1 LIMIT 1  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/reviews/view_my_reviews.html.erb:17
+  Rendered reviews/view_my_reviews.html.erb within layouts/application (12.2ms)
+  User Load (0.9ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1
+  ↳ app/helpers/sessions_helper.rb:25
+  Rendered layouts/_header.html.erb (8.5ms)
+Completed 200 OK in 72ms (Views: 63.5ms | ActiveRecord: 3.2ms)
+
+
+   (135.1ms)  COMMIT
+  ↳ app/controllers/reviews_controller.rb:51
+Redirected to http://localhost:3000/view_my_reviews
+Completed 302 Found in 151ms (ActiveRecord: 137.9ms)
+
+
+Started GET "/view_my_reviews" for ::1 at 2019-06-25 23:25:17 +0700
+Processing by ReviewsController#view_my_reviews as HTML
+  Rendering reviews/view_my_reviews.html.erb within layouts/application
+  Review Load (1.4ms)  SELECT `reviews`.* FROM `reviews` WHERE `reviews`.`user_id` = 5
+  ↳ app/views/reviews/view_my_reviews.html.erb:1
+  Tour Load (0.9ms)  SELECT  `tours`.* FROM `tours` WHERE `tours`.`id` = 1 LIMIT 1
+  ↳ app/views/reviews/view_my_reviews.html.erb:17
+  CACHE Tour Load (0.0ms)  SELECT  `tours`.* FROM `tours` WHERE `tours`.`id` = 1 LIMIT 1  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/reviews/view_my_reviews.html.erb:17
+  CACHE Tour Load (0.0ms)  SELECT  `tours`.* FROM `tours` WHERE `tours`.`id` = 1 LIMIT 1  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/reviews/view_my_reviews.html.erb:17
+  Rendered reviews/view_my_reviews.html.erb within layouts/application (13.6ms)
+  User Load (0.4ms)  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1
+  ↳ app/helpers/sessions_helper.rb:25
+  Rendered layouts/_header.html.erb (4.5ms)
+Completed 200 OK in 70ms (Views: 63.8ms | ActiveRecord: 2.6ms)
+
+
+
