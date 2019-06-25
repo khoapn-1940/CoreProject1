@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
-
   get "/manage_users", to: "manage_users#new"
+  get "/user_destroy", to: "manage_users#destroy"
 
   get "/view_category", to: "manage_categories#index"
   get "/new_category", to: "manage_categories#new"
@@ -27,6 +27,13 @@ Rails.application.routes.draw do
   get "/view_booking_request", to: "booking_request#view_all"
   get "/view_all_booking_request", to: "booking_request#view_all_by_admin"
   get "/delete_booking_request", to: "booking_request#destroy"
+
+  get "/review_tour", to: "reviews#new"
+  post "/review_tour", to: "reviews#create"
+  get "/view_my_reviews", to: "reviews#view_my_reviews"
+  get "/edit_my_reviews", to: "reviews#edit"
+  post "/edit_my_reviews", to: "reviews#update"
+  get "/delete_my_reviews", to: "reviews#destroy"
   resources :users, only: [:new, :edit, :update, :create]
   resources :manage_users, only: [:new, :edit, :update]
 end

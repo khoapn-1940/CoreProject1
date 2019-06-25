@@ -1,12 +1,12 @@
 <% if object.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-    <%= t("error.error_contain") %> <%= t("error.error_count", count:object.errors.count) %>
+      <%= t("error.error_contain") %> <%= t("error.error_count", count:object.errors.count) %>
     </div>
     <ul>
-    <% object.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
+      <% object.errors.full_messages.each do |msg| %>
+        <li class="text-danger"><%= msg %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>

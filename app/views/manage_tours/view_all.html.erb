@@ -1,15 +1,40 @@
 <% @tour.each do |tour| %>
-  <p>
-    <%= t("header.tour") %>: <%= tour.name %> &emsp;&emsp;&emsp;&emsp;&emsp;
-    <%= t "header.description" %> : <%= tour.description %> &emsp;&emsp;&emsp;&emsp;&emsp;
-    <%= t "header.category" %> : <%= tour.category_id %>&emsp;&emsp;&emsp;&emsp;
-    <%= t "header.category_name" %> : <%= tour.category.name %>&emsp;&emsp;&emsp;&emsp;
-    <% if User.roles[session[:role]] == User.roles[:admin] %>
-      <%= link_to "View Tour Details", view_tour_details_path(:id => tour.id) %>
-      <%= link_to "Create Tour Details", new_tour_details_path(:id => tour.id) %>
-    <% end %>
-    <% if User.roles[session[:role]] == User.roles[:user] %>
-      <%= link_to "View Tour Details", view_tour_details_path(:id => tour.id) %>
-    <% end %>
-  </p>
+  <div class="container">
+    <div class="">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>Tour Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Category Name</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tr>
+          <td> <%= tour.name %> </td>
+          <td> <%= tour.description %> </td>
+          <td> <%= tour.category_id %> </td>
+          <td> <%= tour.category.name %> </td>
+          <td class="text-center">
+            <% if User.roles[session[:role]] == User.roles[:admin] %>
+              <%= link_to view_tour_details_path(:id => tour.id), :class => "btn btn-info btn-xs" do %>
+                <span class="glyphicon glyphicon-edit">View Tour Details</span>
+              <% end %>
+              <%= link_to new_tour_details_path(:id => tour.id), :class => "btn btn-info btn-xs" do %>
+                <span class="glyphicon glyphicon-edit">Create Tour Details</span>
+              <% end%>
+            <% elsif User.roles[session[:role]] == User.roles[:user] %>
+              <%= link_to review_tour_path(:id => tour.id), :class => "btn btn-info btn-xs" do %>
+                <span class="glyphicon glyphicon-edit">Write A Review</span>
+              <% end%>
+              <%= link_to view_tour_details_path(:id => tour.id), :class => "btn btn-danger btn-xs" do %>
+                <span class="glyphicon glyphicon-remove">View Tour Details</span>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 <% end %>

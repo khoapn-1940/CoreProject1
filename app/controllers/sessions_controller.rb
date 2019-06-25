@@ -12,6 +12,13 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    if logged_in?
+      log_out
+    end
+    redirect_to root_url
+  end
+
   private
 
   def success_login user
@@ -27,7 +34,7 @@ class SessionsController < ApplicationController
   end
 
   def fail_login
-    flash.now[:success] =
+    flash.now[:danger] =
       t "authentication.controllers.sessions_controller.flash.login_failed"
     render :new
   end

@@ -1,282 +1,111 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
 
-/* mixins, variables, etc. */
-$gray-medium-light: #eaeaea;
-
-/* universal */
-body {
-  padding-top: 60px;
+/* sign in FORM */
+#logreg-forms{
+  width:600px;
+  margin:10vh auto;
+  background-color:#f3f3f3;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-
-section {
-  overflow: auto;
+#logreg-forms form {
+  width: 100vh;
+  max-width: 600px;
+  padding: 15px;
+  margin: auto;
 }
-
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
-}
-
-/* typography */
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: $gray-light;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-
-
-/* header */
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
-}
-
-/* footer */
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
-  color: $gray-light;
-  a {
-    color: $gray;
-    &:hover {
-      color: $gray-darker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
-  }
-}
-
-$gray-medium-light: #eaeaea;
-
-@mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+#logreg-forms .form-control {
+  margin-bottom: 20px;
+  position: relative;
   box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 20px;
 }
-
-/* miscellaneous */
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
-}
-
-/* sidebar */
-aside {
-  section.user_info {
-    margin-top: 20px;
-  }
-  section {
-    padding: 10px 0;
-    margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
-    }
-  }
-}
-
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.gravatar_edit {
-  margin-top: 15px;
-}
-
-/* forms */
-$color-white1: #bbb;
-input, textarea, select, .uneditable-input {
-  border: 1px solid $color-white1;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
-}
-
-input {
-  height: auto !important;
-}
-
-#error_explanation {
-  color: red;
-  ul {
-    color: red;
-    margin: 0 0 30px 0;
-  }
-}
-
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
-
-.checkbox {
-  margin-top: -10px;
+#logreg-forms .form-control:focus { z-index: 2; }
+#logreg-forms .form-signin input[type="email"] {
   margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#logreg-forms .form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
-#session_remember_me {
-  width: auto;
-  margin-left: 0;
+#logreg-forms .social-login{
+  width:390px;
+  margin:0 auto;
+  margin-bottom: 14px;
+}
+#logreg-forms .social-btn{
+  font-weight: 200;
+  color:white;
+  width:190px;
+  font-size: 1.5rem;
 }
 
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
-  }
+#logreg-forms a{
+  display: block;
+  padding-top:10px;
+  color:lightseagreen;
+}
+
+#logreg-form .lines{
+  width:200px;
+  border:1px solid red;
 }
 
 
-.microposts {
-  list-style: none;
-  padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-  }
-  .user {
-    margin-top: 5em;
-    padding-top: 0;
-  }
-  .content {
-    display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
-  }
-  .timestamp {
-    color: $gray-light;
-    display: block;
-    margin-left: 60px;
-  }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
-  }
+#logreg-forms button[type="submit"]{ margin-top:10px; }
+
+#logreg-forms .facebook-btn{  background-color:#3C589C; height: 60px;}
+
+#logreg-forms .google-btn{ background-color: #DF4B3B; height: 60px;}
+
+#logreg-forms .form-reset, #logreg-forms .form-signup{ display: none; }
+
+#logreg-forms .form-signup .social-btn{ width:210px; }
+
+#logreg-forms .form-signup input { margin-bottom: 2px;}
+
+.form-signup .social-login{
+  width:210px !important;
+  margin: 0 auto;
 }
 
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
+/* Mobile */
 
-span.picture {
-  margin-top: 10px;
-  input {
-    border: 0;
+@media screen and (max-width:500px){
+  #logreg-forms{
+      width:300px;
   }
-}
+  
+  #logreg-forms  .social-login{
+      width:200px;
+      margin:0 auto;
+      margin-bottom: 10px;
+  }
+  #logreg-forms  .social-btn{
+      font-size: 3.0rem;
+      font-weight: 300;
+      color:white;
+      width:200px;
+      height: 56px;
 
-.stats {
-  overflow: auto;
-  margin-top: 0;
-  padding: 0;
-  a {
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid $gray-lighter;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
-    }
-    &:hover {
-      text-decoration: none;
-      color: blue;
-    }
   }
-  strong {
-    display: block;
+  #logreg-forms .social-btn:nth-child(1){
+      margin-bottom: 5px;
   }
-}
+  #logreg-forms .social-btn span{
+      display: none;
+  }
+  #logreg-forms  .facebook-btn:after{
+      content:'Facebook';
+  }
 
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
+  #logreg-forms  .google-btn:after{
+      content:'Google+';
   }
-  a {
-    padding: 0;
-  }
-}
-
-.users.follow {
-  padding: 0;
+  
 }

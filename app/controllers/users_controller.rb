@@ -21,16 +21,16 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      flash["info"] =
+      flash[:success] =
         t("authentication.controllers.users_controller.flash.register_success")
       redirect_to signup_path
     else
-      @user = User.new
-      flash["info"] =
+      flash[:danger] =
         t("authentication.controllers.users_controller.flash.register_fail")
       render :new
     end
   end
+
 
   private
 

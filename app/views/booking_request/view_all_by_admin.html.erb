@@ -1,9 +1,28 @@
 <% @booking.each do |booking| %>
-  <p>
-    <%= t "header.booking_id" %>: <%= booking.id %> &emsp;&emsp;&emsp;&emsp;&emsp;
-    <%= t "header.book_total" %> : <%= booking.book_total %> &emsp;&emsp;&emsp;&emsp;&emsp;
-    <%= t "header.user_id" %> : <%= booking.user_id %>&emsp;&emsp;&emsp;&emsp;
-    <%= t "header.tour_detail_id" %> : <%= booking.tour_detail_id %>&emsp;&emsp;&emsp;&emsp;
-    <%= link_to t("header.delete"), delete_booking_request_path(:id => booking.id) %>
-  </p>
+  <div class="container">
+    <div class="">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Booking Total</th>
+            <th>User ID</th>
+            <th>Tour Detail ID</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tr>
+          <td> <%= booking.id %> </td>
+          <td> <%= booking.book_total %> </td>
+          <td> <%= booking.user_id %> </td>
+          <td> <%= booking.tour_detail_id %> </td>
+          <td class="text-center">
+            <%= link_to delete_booking_request_path(:id => booking.id), :class => "btn btn-danger btn-xs" do %>
+              <span class="glyphicon glyphicon-remove">Delete</span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 <% end %>

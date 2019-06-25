@@ -24,7 +24,6 @@ class ManageTourDetailsController < ApplicationController
   private
 
   def user_params
-    puts "Price : #{params[:price]}, time : #{params[:time_start]}"
     params.require(:tour_detail).permit(:price, :tour_total, :time_start, :time_end, :user_id, :tour_id)
   end
 

@@ -1,0 +1,29 @@
+<% @review.each do |review| %>
+  <div class="container">
+    <div class="">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>Review ID</th>
+            <th>Review Content</th>
+            <th>Tour ID</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tr>
+          <td> <%= review.id %> </td>
+          <td> <%= review.content %> </td>
+          <td> <%= review.tour_id %> </td>
+          <td class="text-center">
+            <%= link_to edit_my_reviews_path(:id => review.id), :class => "btn btn-info btn-xs" do %>
+              <span class="glyphicon glyphicon-edit">Edit Review</span>
+            <% end%>
+            <%= link_to delete_my_reviews_path(:id => review.id), :class => "btn btn-danger btn-xs" do %>
+              <span class="glyphicon glyphicon-remove">Delete Review</span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% end %>

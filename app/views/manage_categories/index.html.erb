@@ -1,7 +1,30 @@
 <% @categories.each do |category| %>
-  <p>
-  <%= t("header.id") %>: <%= category.id %> &emsp;&emsp;&emsp;<%= t("header.category") %>: <%= category.name %> &emsp;&emsp;&emsp;&emsp;&emsp; <%= t "header.description" %> : <%= category.description %> &emsp;&emsp;&emsp;&emsp;
-    <%= link_to "Delete", delete_category_path(:id => category.id) %> &emsp;&emsp;<%= link_to "Create Tour", new_tour_path(:id => category.id) %>
-  </p>
+  <div class="container">
+    <div class="">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tr>
+          <td> <%= category.id %> </td>
+          <td> <%= category.name %> </td>
+          <td> <%= category.description %> </td>
+          <td class="text-center">
+            <%= link_to new_tour_path(:id => category.id), :class => "btn btn-info btn-xs" do %>
+              <span class="glyphicon glyphicon-edit">Create Tour</span>
+            <% end %>
+            <%= link_to delete_category_path(:id => category.id), :class => "btn btn-danger btn-xs" do %>
+              <span class="glyphicon glyphicon-remove">Delete</span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 <% end %>
 <%= link_to "Add New Category", new_category_path %>

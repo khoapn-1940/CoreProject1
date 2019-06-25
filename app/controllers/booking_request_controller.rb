@@ -21,7 +21,7 @@ class BookingRequestController < ApplicationController
     end
     booking_number = params[:booking][:book_total].to_i
     if sum + booking_number > limit_booking
-      flash[:success] = "Tour is full only #{limit_booking - sum} slot"
+      flash[:danger] = "Tour is full only #{limit_booking - sum} slot"
     else
       @booking.save(user_params)
     end

@@ -1,0 +1,23 @@
+<!------ Include the above in your HEAD tag ---------->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bootstrap 4 Login/Register Form</title>
+  </head>
+  <body>
+    <div id="logreg-forms">
+      <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Leave A Review</h1>
+      <%= form_for(@review, :url => "/review_tour",:html => {:class => 'form-signin'}) do |f| %>
+        <%= render "shared/form_error_messages", object: @review %>
+        <%= f.text_field :content, class: "form-control", placeholder: "Content" %>
+        <%= f.text_field :user_id, class: "form-control" %>
+        <%= f.text_field :tour_id, class: "form-control" %>
+        <%= f.submit "Review", class: "btn btn-primary" %>
+      <% end %>
+      <br>
+    </div>
+  </body>
+</html>

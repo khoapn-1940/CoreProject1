@@ -1,5 +1,29 @@
 <% @user_all.each do |user| %>
-<p>
-    <%= t("header.user") %>: <%= user.name %> -------------------------- <%= t "manage_users.role" %> : <%= user.role %> ------------------- <%= link_to t("header.edit"), edit_user_path(:id => user.id) %>
-</p>
+  <div class="container">
+    <div class="">
+      <table class="table table-striped custab">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th class="text-center">Action</th>
+          </tr>
+        </thead>
+        <tr>
+          <td> <%= user.name %> </td>
+          <td> <%= user.email %> </td>
+          <td> <%= user.role %> </td>
+          <td class="text-center">
+            <%= link_to edit_user_path(:id => user.id), :class => "btn btn-info btn-xs" do %>
+              <span class="glyphicon glyphicon-edit">Edit</span>
+            <% end %>
+            <%= link_to user_destroy_path(:id => user.id), :class => "btn btn-danger btn-xs" do %>
+              <span class="glyphicon glyphicon-remove">Delete</span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 <% end %>

@@ -1,23 +1,33 @@
-<%= form_for(@user) do |f| %>
-  <%= render "shared/form_error_messages", object: @user %>
-  <%= f.label t("authentication.views.label.name") %>
-  <%= f.text_field :name %>
-  <%= f.label t("authentication.views.label.email") %>
-  <%= f.text_field :email %>
-  <%= f.label t("authentication.views.label.phone") %>
-  <%= f.text_field :phone %>
-  <%= f.label t("authentication.views.label.bank_account") %>
-  <%= f.text_field :bank_account %>
-  <% if @user.email.nil? %>
-    <%= f.label t("authentication.views.label.password") %>
-    <%= f.password_field :password %>
-    <%= f.label t("authentication.views.label.password_confirm") %>
-    <%= f.password_field :password_confirmation %>
-  <% else %>
-  <% end %>
-  <% if User.roles[session[:role]] == User.roles[:admin] %>
-    <%= f.label "Role" %>
-    <%= f.text_field :role %> 
-  <% end %>
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-<% end %>
+<!------ Include the above in your HEAD tag ---------->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bootstrap 4 Login/Register Form</title>
+  </head>
+  <body>
+    <div id="logreg-forms">
+      <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Form</h1>
+      <%= form_for(@user,:html => {:class => 'form-signin'}) do |f| %>
+        <%= render "shared/form_error_messages", object: @user %>
+        <%= f.text_field :name,class: "form-control", placeholder: "Name"%>
+        <%= f.text_field :email,class: "form-control", placeholder: "Email" %>
+        <%= f.text_field :phone,class: "form-control", placeholder: "Phone" %>
+        <%= f.text_field :bank_account,class: "form-control", placeholder: "Bank Account" %>
+        <% if User.roles[session[:role]].nil? %>
+          <%= f.password_field :password,class: "form-control", placeholder: "Password" %>
+          <%= f.password_field :password_confirmation,class: "form-control", placeholder: "Password Confirmation" %>
+        <% else %>
+        <% end %>
+        <% if User.roles[session[:role]] == User.roles[:admin] %>
+          <%= f.label "Role" %>
+          <%= f.text_field :role ,class: "form-control"%>
+        <% end %>
+        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+      <% end %>
+      <br>
+    </div>
+  </body>
+</html>
