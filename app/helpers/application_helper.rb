@@ -7,4 +7,8 @@ module ApplicationHelper
       page_title + base_title
     end
   end
+
+  def check_admin
+    redirect_to error_path unless User.roles[session[:role]] == User.roles[:admin]
+  end
 end

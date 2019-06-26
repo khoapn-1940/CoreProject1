@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "sessions#home"
+  get "/error", to: "errors#handle404"
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
   get "/login", to: "sessions#new"
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
   get "/new_tour", to: "manage_tours#new"
   post "/new_tour", to: "manage_tours#create"
   get "/view_tour", to: "manage_tours#view_all"
+  get "/delete_tour", to: "manage_tours#destroy"
 
   get "/new_tour_details", to: "manage_tour_details#new"
   post "/new_tour_details", to: "manage_tour_details#create"

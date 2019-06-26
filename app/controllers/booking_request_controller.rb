@@ -1,4 +1,5 @@
 class BookingRequestController < ApplicationController
+  before_action :check_admin, only: [:view_all_by_admin]
   def new
     @booking = Booking.new(:user_id => session[:user_id], :tour_detail_id => params[:id])
   end
@@ -21,30 +22,45 @@ class BookingRequestController < ApplicationController
     end
     booking_number = params[:booking][:book_total].to_i
     if sum + booking_number > limit_booking
-      flash[:danger] = "Tour is full only #{limit_booking - sum} slot"
+      flash[:danger] = t("manage_booking.booking_request_controller.flash.tour_full", count: (limit_booking - sum))
+      render :new
     else
-      @booking.save(user_params)
+      if @booking.save(user_params)
+        flash[:success] = "Booking Successfully"
+        load_booking
+        render :view_all
+      else
+        flash[:danger] = "Booking Failed !"
+        render :new
+      end
     end
-    load_booking
-    render :view_all
   end
 
   def destroy
     @booking = Booking.find_by_id params[:id]
-    @booking.destroy
-    @booking = Booking.all
-    render :view_all_by_admin
+    if @booking.destroy
+      flash[:success] = "Deleted Booking Successfully"
+      load_booking
+      render :view_all_by_admin
+    else
+      flash[:danger] = "Deleted Booking Failed !"
+      redirect_to root_path
+    end
   end
 
   private
 
   def user_params
-    params.require(:booking).permit(:book_total, :tour_detail_id, :user_id)
+    params.require(:booking).permit(:book_total,:tour_detail_id, :user_id)
   end
 
   def load_booking
-    @booking = Booking.where(:user_id => session[:user_id])
+    if User.roles[session[:role]] == User.roles[:user]
+      @booking = Booking.where(:user_id => session[:user_id])
+    elsif User.roles[session[:role]] == User.roles[:admin]
+      @booking = Booking.all
+    else
+      redirect_to error_path
+    end
   end
-
-
 end

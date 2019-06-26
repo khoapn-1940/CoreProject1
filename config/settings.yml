@@ -1,5 +1,6 @@
 name_maximum_length : 50
 email_maximum_length : 50
+description_maximum_length : 250
 phone_minimum_length : 8
 phone_maximum_length : 14
 bank_account_minimum_length : 8

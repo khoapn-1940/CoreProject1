@@ -64,7 +64,6 @@ en:
         flash:
           login_success : "Login success"
           login_failed : "Login failed"
-          booking_request_controller : "Tour is full only %{count} slot"
   error:
     error_contain : "The form contains "
     error_count : "%{count} error"
@@ -100,3 +99,7 @@ en:
     login : "Login"
   manage_users:
     role : "Role"
+  manage_booking:
+    booking_request_controller:
+      flash:
+        tour_full : "Tour is full, %{count} slot available"

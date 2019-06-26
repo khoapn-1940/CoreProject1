@@ -6,11 +6,15 @@
   <%= f.text_field :tour_total %>
   <%= f.label "User ID" %>
   <%= f.text_field :user_id %>
+  <br>
+  <br>
   <%= f.label "Time Start" %>
-  <%= f.text_field :time_start %>
-  <%= f.label "Time End" %>
-  <%= f.text_field :time_end %>
-  <%= f.label "Tour ID" %>
-  <%= f.text_field :tour_id %>
-  <%= f.submit "Create", class: "btn btn-primary" %>
-<% end %>
+  <span class="datetime"><%= f.datetime_select :time_start , ampm: true , :class => "form-control"%><span/>
+    <br>
+    <%= f.label "Time End" %>
+    <span class="datetime"><%= f.datetime_select :time_end , ampm: true , :class => "form-control"%><span/>
+      <br>
+      <%= f.label "Tour ID" %>
+      <%= f.text_field :tour_id %>
+      <%= f.submit "Create", class: "btn btn-primary" %>
+    <% end %>

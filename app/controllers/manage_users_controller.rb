@@ -1,4 +1,5 @@
 class ManageUsersController < ApplicationController
+  before_action :check_admin, except: []
   def new
     return unless User.roles[session[:role]] == User.roles[:admin]
     @user_all = User.all

@@ -24,6 +24,9 @@
               <%= link_to new_tour_details_path(:id => tour.id), :class => "btn btn-info btn-xs" do %>
                 <span class="glyphicon glyphicon-edit">Create Tour Details</span>
               <% end%>
+              <%= link_to delete_tour_path(:id => tour.id), :class => "btn btn-danger btn-xs" do %>
+                <span class="glyphicon glyphicon-remove">Delete Tour</span>
+              <% end%>
             <% elsif User.roles[session[:role]] == User.roles[:user] %>
               <%= link_to view_tour_review_path(:id => tour.id), :class => "btn btn-info btn-xs" do %>
                 <span class="glyphicon glyphicon-edit">View Tour Reviews</span>
@@ -32,11 +35,9 @@
                 <span class="glyphicon glyphicon-remove">View Tour Details</span>
               <% end %>
               <%= link_to "Write A Review", review_tour_path(:id => tour.id) %>
-
             <% end %>
           </td>
         </tr>
-
       </table>
     </div>
   </div>

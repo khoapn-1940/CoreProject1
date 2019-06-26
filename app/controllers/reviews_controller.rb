@@ -1,28 +1,34 @@
 class ReviewsController < ApplicationController
+  before_action :check_admin, only: [:view_all_reviews]
   def new
     @review = Review.new(:user_id => session[:user_id],:tour_id => params[:id])
   end
 
   def edit
     @review = Review.find_by_id params[:id]
-    puts "EDIT #{@review}"
   end
 
   def update
     @review = Review.find_by_id params[:review][:id]
-    puts "REVIEW #{@review} " 
     if @review.update_attributes(update_params)
-      flash[:success] = "Update Success"
+      flash[:success] = "Update Review Success"
+      redirect_to view_my_reviews_path
     else
-      flash[:danger] = "Update Failed"
+      flash[:danger] = "Update Review Failed"
+      render :edit
     end
-    redirect_to view_my_reviews_path
+    
   end
 
   def create
     @review = Review.new user_params
-    @review.save
-    redirect_to view_my_reviews_path
+    if @review.save
+      flash[:success] = "Review Successfully !"
+      redirect_to view_my_reviews_path
+    else
+      flash[:danger] = "Review Failed"
+      render :new
+    end
   end
 
   def view_my_reviews
@@ -39,7 +45,11 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find_by_id params[:id]
-    @review.destroy
+    if @review.destroy
+      flash[:success] = "Deleted Review Successfully !"
+    else
+      flash[:danger] = "Deleted Review Failed"
+    end
     redirect_to view_my_reviews_path
   end
 
@@ -49,9 +59,6 @@ class ReviewsController < ApplicationController
     @tour_id = params[:tour_id]
     @review_id = params[:id]
     @likecount = Like.where(:review_id => params[:id])
-    # debugger
-    # @review = Review.where(:tour_id => params[:tour_id])
-    # render :view_tour_reviews
     respond_to do |format|
       format.html { redirect_to view_my_reviews_path }
       format.js
@@ -64,8 +71,6 @@ class ReviewsController < ApplicationController
     @tour_id = params[:tour_id]
     @review_id = params[:id]
     @likecount = Like.where(:review_id => params[:id])
-    # @review = Review.where(:tour_id => params[:tour_id])
-    # render :view_tour_reviews
     respond_to do |format|
       format.html { redirect_to view_my_reviews_path }
       format.js
