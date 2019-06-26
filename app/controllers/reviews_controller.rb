@@ -12,11 +12,9 @@ class ReviewsController < ApplicationController
     @review = Review.find_by_id params[:review][:id]
     puts "REVIEW #{@review} " 
     if @review.update_attributes(update_params)
-        puts "Flash1"
-        flash[:success] = "Update Success"
+      flash[:success] = "Update Success"
     else
-        puts "Flash 2"
-        flash[:danger] = "Update Failed"
+      flash[:danger] = "Update Failed"
     end
     redirect_to view_my_reviews_path
   end
@@ -46,18 +44,32 @@ class ReviewsController < ApplicationController
   end
 
   def like
-    puts "Yeaaaaaaaaaaaaaaaaaaaaa"
     @like = Like.new(:user_id => session[:user_id],:review_id => params[:id])
     @like.save
-    @review = Review.where(:tour_id => params[:tour_id])
-    render :view_tour_reviews
+    @tour_id = params[:tour_id]
+    @review_id = params[:id]
+    @likecount = Like.where(:review_id => params[:id])
+    # debugger
+    # @review = Review.where(:tour_id => params[:tour_id])
+    # render :view_tour_reviews
+    respond_to do |format|
+      format.html { redirect_to view_my_reviews_path }
+      format.js
+    end
   end
 
   def unlike
     @like = Like.where(:user_id => session[:user_id],:review_id => params[:id]).first
     @like.destroy
-    @review = Review.where(:tour_id => params[:tour_id])
-    render :view_tour_reviews
+    @tour_id = params[:tour_id]
+    @review_id = params[:id]
+    @likecount = Like.where(:review_id => params[:id])
+    # @review = Review.where(:tour_id => params[:tour_id])
+    # render :view_tour_reviews
+    respond_to do |format|
+      format.html { redirect_to view_my_reviews_path }
+      format.js
+    end
   end
   private
 

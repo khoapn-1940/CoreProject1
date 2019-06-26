@@ -64,6 +64,7 @@ en:
         flash:
           login_success : "Login success"
           login_failed : "Login failed"
+          booking_request_controller : "Tour is full only %{count} slot"
   error:
     error_contain : "The form contains "
     error_count : "%{count} error"
