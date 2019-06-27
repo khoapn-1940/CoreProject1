@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :load_user, only: [:edit, :update]
-  before_action :check_admin, except: []
   def new
     @user = User.new
   end
