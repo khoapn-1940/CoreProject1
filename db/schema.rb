@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2019_06_18_064714) do
   create_table "tours", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.string "image"
     t.boolean "enable", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(version: 2019_06_18_064714) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
+    t.string "avatar"
     t.string "email"
     t.string "phone"
     t.string "bank_account"

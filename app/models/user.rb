@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :ratings, dependent: :destroy
-  has_many :tour_details, dependent: :destroy
+  has_many :tours, dependent: :destroy
   has_many :tour_details, dependent: :destroy
   has_many :bookings, dependent: :destroy
 

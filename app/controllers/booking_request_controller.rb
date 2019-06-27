@@ -1,7 +1,7 @@
 class BookingRequestController < ApplicationController
   before_action :check_admin, only: [:view_all_by_admin]
   def new
-    @booking = Booking.new(:user_id => session[:user_id], :tour_detail_id => params[:id])
+    @booking = current_user.bookings.build(:tour_detail_id => params[:id])
   end
 
   def view_all
