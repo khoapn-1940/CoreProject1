@@ -40,6 +40,10 @@ Rails.application.routes.draw do
   get "/delete_my_reviews", to: "reviews#destroy"
   post "/like_review", to: "reviews#like"
   post "/unlike_review", to: "reviews#unlike"
+
+  post "/pay", to: "payments#pay"
+
+  get "/revenue", to: "manage_revenue#index"
   resources :users, only: [:new, :edit, :update, :create]
   resources :manage_users, only: [:new, :edit, :update]
 end

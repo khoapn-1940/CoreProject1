@@ -20,8 +20,10 @@
           <td> <%= booking.book_total %> </td>
           <td> <%= booking.user_id %> </td>
           <td class="text-center">
-            <%= link_to url: "#", :class => "btn btn-info btn-xs" do %>
-              <span class="glyphicon glyphicon-edit">Pay</span>
+            <% if not_paid booking.id %>
+              <%= link_to pay_path(:booking_id => booking.id), :class => "btn btn-info btn-xs", method: :post do %>
+                <span class="glyphicon glyphicon-edit">Pay</span>
+              <% end %>
             <% end %>
             <%= link_to delete_booking_request_path(:id => booking.id), :class => "btn btn-danger btn-xs" do %>
               <span class="glyphicon glyphicon-remove">Delete</span>
