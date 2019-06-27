@@ -6,6 +6,8 @@
           <tr>
             <th>Booking ID</th>
             <th>Tour</th>
+            <th>Start At</th>
+            <th>End At</th>
             <th>Pay At</th>
             <th>Price</th>
             <th class="text-center">Action</th>
@@ -14,6 +16,8 @@
         <tr>
           <td> <%= payment.booking_id %> </td>
           <td> <%= payment.booking.tour_detail.tour.name %> </td>
+          <td> <%= payment.booking.tour_detail.time_start %> </td>
+          <td> <%= payment.booking.tour_detail.time_end %> </td>
           <td> <%= payment.created_at %> </td>
           <td> <%= payment.booking.tour_detail.price %> </td>
           <td class="text-center">

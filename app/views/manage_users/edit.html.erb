@@ -1,19 +1,18 @@
 <%= form_for(@user) do |f| %>
-    <%= render "shared/form_error_messages", object: @user %>
-    <%= f.label t("authentication.views.label.name") %>
-    <%= f.text_field :name %>
-    <%= f.label t("authentication.views.label.email") %>
-    <%= f.text_field :email %>
-    <%= f.label t("authentication.views.label.phone") %>
-    <%= f.text_field :phone %>
-    <%= f.label t("authentication.views.label.bank_account") %>
-    <%= f.text_field :bank_account %>
-    <%= f.label t("authentication.views.label.password") %>
-    <%= f.password_field :password %>
-    <%= f.label t("authentication.views.label.password_confirm") %>
-    <%= f.password_field :password_confirmation %>
-    <%= f.label t("manage_users.role") %>
-    <%= f.text_field :role %>
-    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-  <% end %>
-  
+  <%= render "shared/form_error_messages", object: @user %>
+  <%= f.label t("authentication.views.label.name") %>
+  <%= f.text_field :name %>
+  <%= f.label t("authentication.views.label.email") %>
+  <%= f.text_field :email %>
+  <%= f.label t("authentication.views.label.phone") %>
+  <%= f.text_field :phone %>
+  <%= f.label t("authentication.views.label.bank_account") %>
+  <%= f.text_field :bank_account %>
+  <%= f.label t("authentication.views.label.password") %>
+  <%= f.password_field :password %>
+  <%= f.label t("authentication.views.label.password_confirm") %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.label t("manage_users.role") %>
+  <%= f.text_field :role %>
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
