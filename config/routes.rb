@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root "sessions#home"
+  get 'pages/home'
+  root "pages#home"
   get "/error", to: "errors#handle404"
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"

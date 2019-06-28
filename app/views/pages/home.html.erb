@@ -1,0 +1,35 @@
+<div class="container">
+  <%= will_paginate @tour_details %>
+  <div id="products" class="row list-group">
+    <% @tour_details.each do |tour_detail| %>
+      <!------ Include the above in your HEAD tag ---------->
+      <div class="item  col-xs-4 col-lg-4" style="height: 100%">
+        <div class="thumbnail">
+          <%= image_tag "#{tour_detail.tour.image}",  alt: "like", class: "group list-group-image", style: "height: 400px;" %>
+          <div class="caption">
+            <h4 class="group inner list-group-item-heading">
+              <%= tour_detail.tour.name %></h4>
+            <p class="group inner list-group-item-text">
+              <%= tour_detail.tour.description %></p>
+            <br>
+            <div class="row">
+              <div class="col-xs-12 col-md-6">
+                <p class="lead">
+                  <%= tour_detail.price %> $ </p>
+              </div>
+              <%= tour_detail.time_start.strftime("%B %e, %Y at %I:%M %p") %><br>
+              <%= tour_detail.time_end.strftime("%B %e, %Y at %I:%M %p")%>
+              <div class="col-xs-12 col-md-12" style="text-align: right,display: inline-block">
+                <% if logged_in? %>
+                  <%= link_to "Booking", root_path, :class => "btn btn-success" %>
+                <% else %>
+                  <%= link_to "Booking", login_path, :class => "btn btn-success" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
