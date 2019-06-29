@@ -1,0 +1,2 @@
+$("#R<%= @like.review_id%>").html('<i class="fa fa-thumbs-up icon"></i> <%= @like_count%>');
+$("#R<%= @like.review_id%>").attr("href", "/unlike_a_review?review_id=<%= @like.review_id %>");

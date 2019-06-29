@@ -21,7 +21,7 @@
               <%= tour_detail.time_end.strftime("%B %e, %Y at %I:%M %p")%>
               <div class="col-xs-12 col-md-12" style="text-align: right,display: inline-block">
                 <% if logged_in? %>
-                  <%= link_to "Booking", root_path, :class => "btn btn-success" %>
+                  <%= link_to "Booking", view_detail_path(:id => tour_detail.id), :class => "btn btn-success" %>
                 <% else %>
                   <%= link_to "Booking", login_path, :class => "btn btn-success" %>
                 <% end %>

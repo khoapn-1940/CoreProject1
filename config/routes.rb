@@ -45,6 +45,12 @@ Rails.application.routes.draw do
   post "/pay", to: "payments#pay"
 
   get "/revenue", to: "manage_revenue#index"
+
+  get "/view_detail", to: "view_tour_details#detail"
+  get "/rating_tour", to: "view_tour_details#rating"
+  get "/like_a_review", to: "view_tour_details#like_review"
+  get "/unlike_a_review", to: "view_tour_details#unlike_review"
+  post "/comment_tour", to: "view_tour_details#comment_tour"
   resources :users, only: [:new, :edit, :update, :create]
   resources :manage_users, only: [:new, :edit, :update]
 end

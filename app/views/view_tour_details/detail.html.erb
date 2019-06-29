@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="card">
+    <div class="container-fliud">
+      <div class="wrapper row">
+        <div class="preview col-md-6">
+          <div class="preview-pic tab-content">
+            <div class="tab-pane active" id="pic-1" style="padding-top: 0px;">
+              <%# <img src="tour.jpg" style="width: 1000px;" /> %>
+              <%= image_tag "#{@tour_detail.tour.image}",  alt: "Tour Details", class: "group list-group-image", style: "width: 1000px;" %>
+            </div>
+          </div>
+          <ul class="preview-thumbnail nav nav-tabs">
+          </ul>
+        </div>
+        <div class="details col-md-6" style="margin-left: 100px;">
+          <h3 class="product-title"> <%= @tour_detail.tour.name %></h3>
+          <div class="rating">
+            <div class="stars">
+              <% if @self_star.nil? %>
+                <%= link_to rating_tour_path(:star => "1", :tour_id => @tour_detail.id), :remote => true do %>
+                  <span class="fa fa-star"></span>
+                <% end %>
+                <%= link_to rating_tour_path(:star => "2", :tour_id => @tour_detail.id), :remote => true do %>
+                  <span class="fa fa-star"></span>
+                <% end %>
+                <%= link_to rating_tour_path(:star => "3", :tour_id => @tour_detail.id), :remote => true do %>
+                  <span class="fa fa-star"></span>
+                <% end %>
+                <%= link_to rating_tour_path(:star => "4", :tour_id => @tour_detail.id), :remote => true do %>
+                  <span class="fa fa-star"></span>
+                <% end %>
+                <%= link_to rating_tour_path(:star => "5", :tour_id => @tour_detail.id), :remote => true do %>
+                  <span class="fa fa-star"></span>
+                <% end %>
+              <% else %>
+                <% @self_star.star.times do |star| %>
+                  <span class="fa fa-star checked"></span>
+                <% end %>
+              <% end %>
+            </div>
+            <span class="review-no"><%= @tour_detail.tour.reviews.all.count %> reviews</span>
+          </div>
+          <p class="product-description"> <%= @tour_detail.tour.description %></p>
+          <h4 class="price">current price: <span> <%= @tour_detail.price %> $ </span></h4>
+          <p class="vote">Average 
+            <% @star.times do |display| %>
+              <span class="fa fa-star checked">
+              </span>
+            <% end %> of buyers enjoyed this product! <strong>(<%= @stars_count%> votes)</strong>
+          </p>
+          <h5 class="sizes">Time Start:
+            <span class="size" data-toggle="tooltip" title="small"><%= @tour_detail.time_start %></span>
+          </h5>
+          <h5 class="sizes">Time End:&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="size" data-toggle="tooltip" title="small"><%= @tour_detail.time_end %></span>
+          </h5>
+          <div class="action">
+            <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+            <button class="like btn btn-default" type="button"><span
+                                    class="fa fa-heart">Booking</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Comment  -->
+<!------ Include the above in your HEAD tag ---------->
+<br>
+<br>
+<br>
+<br>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<div class="container">
+  <h2 class="page-header">Comments</h2>
+  <%= form_for(@self_review, :url => comment_tour_path,:method => :POST, :authenticity_token => true, :remote => true) do |f| %>
+    <div class="input-group">
+      <%= f.text_field(:content, class: "form-control", :placeholder => "Leave a comment ", :style=>"height: 50px;")%>
+      <%= f.hidden_field :tour_id %>
+      <span class="input-group-addon">
+        <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+          <i class="fa fa-edit"></i>
+        <% end%>
+      </span>
+    </div>
+  <% end%>
+  <div class="col-sm-16">
+    <% unless @reviews.nil? %>
+      <%= will_paginate @reviews %>
+      <% @reviews.each do |review| %>
+        <div class="panel panel-white post panel-shadow">
+          <div class="post-heading">
+            <div class="pull-left image">
+              <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+            </div>
+            <div class="pull-left meta">
+              <div class="title h5">
+                <a href="#"><b> <%= review.user.name %> </b></a>
+              </div>
+              <h6 class="text-muted time"> <%= review.updated_at %></h6>
+            </div>
+          </div>
+          <div class="post-description">
+            <p> <%= review.content%> </p>
+            <div class="stats">
+              <% if current_user.likes.find_by(review_id: review.id).nil? %>
+                <%= link_to like_a_review_path(:review_id => review.id), :class=>"btn btn-default stat-item", :id => "R#{review.id}", :remote => true do %>
+                  <i class="fa fa-thumbs-up icon"></i> <%= review.likes.count%>
+                <% end%>
+              <% else%>
+                <%= link_to unlike_a_review_path(:review_id => review.id), :class=>"btn btn-default stat-item", :id => "R#{review.id}", :remote => true do %>
+                  <i class="fa fa-thumbs-up icon"></i> <%= review.likes.count%>
+                <% end %>
+              <%end%>
+              <!-- <a href="#" class="btn btn-default stat-item">
+              <i class="fa fa-share icon"></i>12
+            </a> -->
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

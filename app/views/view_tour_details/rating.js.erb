@@ -1,0 +1,10 @@
+function decodeEntities(encodedString) {
+var textArea = document.createElement('textarea');
+textArea.innerHTML = encodedString;
+return textArea.value;
+}
+<% rend = "" %>
+<% @rating.star.times do |star| %>
+  <% rend += '<span class="fa fa-star checked"></span>'%>
+<% end %>
+$(".stars").html(decodeEntities("<%= rend %>"));
