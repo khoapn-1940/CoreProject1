@@ -1,0 +1,57 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+  <div class="row">
+    <div class="well">
+      <h1 class="text-center">Your Booking Requests</h1>
+      <div class="list-group">
+        <%= will_paginate @my_booking %>
+        <% @my_booking.each do |booking| %>
+          <div class="list-group-item" id="B<%=booking.id%>">
+            <div class="media col-md-3">
+              <figure class="pull-left">
+                <%= link_to view_detail_path(:star => "4", :tour_id => booking.tour_detail.tour.id, :tour_detail_id => booking.tour_detail.id) do %>
+                  <%= image_tag "#{booking.tour_detail.tour.image}",  alt: "like", class: "media-object img-rounded img-responsive" %>
+                <% end %>
+                <%# # <img class="media-object img-rounded img-responsive"  src="http://placehold.it/350x250" alt="placehold.it/350x250" > %>
+              </figure>
+            </div>
+            <div class="col-md-6">
+              <%= link_to view_detail_path(:star => "4", :tour_id => booking.tour_detail.tour.id, :tour_detail_id => booking.tour_detail.id) do %>
+                <h4 class="list-group-item-heading"> <%= booking.tour_detail.tour.name%> </h4>
+              <% end %>
+              <p class="list-group-item-text">  <%= booking.tour_detail.tour.description%>
+              </p>
+              <br>
+              <br>
+              <br>
+              <br>
+            </div>
+            <div class="col-md-3 text-center">
+              <h4>  <%= (booking.tour_detail.price * booking.book_total).round(0) %>$   </h4>
+              <small><small>Total : <%= booking.book_total %> slots</small></small>
+              <div class="stars">
+                <% booking.tour_detail.tour.ratings.average(:star).to_i.times do |count|%>
+                  <span class="glyphicon glyphicon-star"></span>
+                <% end %>
+                <% (5-(booking.tour_detail.tour.ratings.average(:star)).to_i).times do |count|%>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                <% end %>
+              </div>
+              <%if booking.tour_detail.tour.ratings.empty? %>
+                <p> Average 0<small> / </small><%= booking.tour_detail.tour.ratings.count %> votes  </p>
+              <% else%>
+                <p> Average <%= booking.tour_detail.tour.ratings.average(:star) %><small> / </small><%= booking.tour_detail.tour.ratings.count %> votes </p>
+              <% end%>
+              <%= link_to delete_my_booking_path(:booking_id => booking.id), :remote => true do %>
+                <button type="button" class="btn-danger "> Delete </button>
+              <%end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

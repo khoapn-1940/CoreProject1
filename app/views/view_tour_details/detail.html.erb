@@ -46,7 +46,7 @@
             <% @star.times do |display| %>
               <span class="fa fa-star checked">
               </span>
-            <% end %> of buyers enjoyed this product! <strong>(<%= @stars_count%> votes)</strong>
+            <% end %> of buyers enjoyed this product! <strong>(<%= @tour_detail.tour.ratings.count %> votes)</strong>
           </p>
           <h5 class="sizes">Time Start:
             <span class="size" data-toggle="tooltip" title="small"><%= @tour_detail.time_start %></span>
@@ -54,10 +54,14 @@
           <h5 class="sizes">Time End:&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="size" data-toggle="tooltip" title="small"><%= @tour_detail.time_end %></span>
           </h5>
-          <div class="action">
-            <button class="add-to-cart btn btn-default" type="button">add to cart</button>
-            <button class="like btn btn-default" type="button"><span
-                                    class="fa fa-heart">Booking</span></button>
+          <div class="action" style="display: inline-block">
+            <%= form_for(@booking_tour, :url => booking_tour_path,:method => :POST, :authenticity_token => true) do |f| %>
+              <%= f.text_field(:book_total, class: "add-to-cart", :placeholder => "_______", :style=>"width:70px;") %>
+              <%= f.hidden_field :tour_detail_id %>
+              <%= button_tag(type: "submit", class: "like btn btn-default", style: "float:left") do %>
+                <span class="fa fa-heart">Booking</span>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -104,11 +108,11 @@
             <p> <%= review.content%> </p>
             <div class="stats">
               <% if current_user.likes.find_by(review_id: review.id).nil? %>
-                <%= link_to like_a_review_path(:review_id => review.id), :class=>"btn btn-default stat-item", :id => "R#{review.id}", :remote => true do %>
+                <%= link_to like_a_review_path(:review_id => review.id), :class=>"btn-default stat-item", :id => "R#{review.id}", :remote => true do %>
                   <i class="fa fa-thumbs-up icon"></i> <%= review.likes.count%>
                 <% end%>
               <% else%>
-                <%= link_to unlike_a_review_path(:review_id => review.id), :class=>"btn btn-default stat-item", :id => "R#{review.id}", :remote => true do %>
+                <%= link_to unlike_a_review_path(:review_id => review.id), :class=>"stat-item" ,:id => "R#{review.id}", :remote => true do %>
                   <i class="fa fa-thumbs-up icon"></i> <%= review.likes.count%>
                 <% end %>
               <%end%>
@@ -122,3 +126,4 @@
     <% end %>
   </div>
 </div>
+-

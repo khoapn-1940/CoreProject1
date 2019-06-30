@@ -1,0 +1,25 @@
+.glyphicon-lg
+{
+    font-size:4em
+}
+.info-block
+{
+   margin-bottom:25px
+}
+.info-block .square-box
+{
+    width:200px;min-height:110px;margin-right:22px;text-align:center!important;padding:20px 0
+}
+.info-block.block-info
+{
+    #20819e
+}
+.info-block.block-info .square-box
+{
+    color:#FFF
+}
+a.hover:hover
+{   
+  text-decoration: none;
+  color: white;
+}

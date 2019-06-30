@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'pages/home'
   root "pages#home"
   get "/error", to: "errors#handle404"
   get "/signup", to: "users#new"
@@ -34,7 +33,6 @@ Rails.application.routes.draw do
   get "/review_tour", to: "reviews#new"
   post "/review_tour", to: "reviews#create"
   get "/view_all_review", to:"reviews#view_all_reviews"
-  get "/view_my_reviews", to: "reviews#view_my_reviews"
   get "/view_tour_review", to: "reviews#view_tour_reviews"
   get "/edit_my_reviews", to: "reviews#edit"
   post "/edit_my_reviews", to: "reviews#update"
@@ -51,6 +49,10 @@ Rails.application.routes.draw do
   get "/like_a_review", to: "view_tour_details#like_review"
   get "/unlike_a_review", to: "view_tour_details#unlike_review"
   post "/comment_tour", to: "view_tour_details#comment_tour"
+  post "/booking_tour", to: "view_tour_details#booking_tour"
+  get "/view_my_booking", to: "self_management#view_my_booking"
+  get "/delete_my_booking", to: "self_management#delete_my_booking"
+  get "/view_my_review", to: "self_management#view_my_review"
   resources :users, only: [:new, :edit, :update, :create]
   resources :manage_users, only: [:new, :edit, :update]
 end

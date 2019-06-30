@@ -1,0 +1,27 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+  <div class="row">
+    <%= will_paginate @my_review %>
+    <div class="searchable-container">
+      <% @my_review.each do |review| %>
+        <div class="items col-xs-12 col-sm-6 col-md-6 col-lg-6 clearfix" id="R<%= review.id %>">
+          <div class="info-block block-info clearfix" style="height: 200px;">
+            <div class="square-box pull-left">
+              <%= image_tag "#{review.tour.image}",  alt: "Tour Image", :style => "height:150px;" %>
+            </div>
+            <h5> <%= review.created_at.strftime("%B %e, %Y at %I:%M %p")  %></h5>
+            <h4> <%= review.tour.name %></h4>
+            <p><%= review.tour.description%></p>
+            <div style="display: inline-block">
+              <span><a href = "#" class="glyphicon glyphicon-thumbs-up"></a> : <%= review.likes.count%></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span><a href = "#" class="glyphicon glyphicon-trash"></a> </span>
+            </div>
+          </div>
+        </div>
+      <% end%>
+    </div>
+  </div>
+</div>
