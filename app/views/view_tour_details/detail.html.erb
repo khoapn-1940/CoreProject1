@@ -108,11 +108,11 @@
             <p> <%= review.content%> </p>
             <div class="stats">
               <% if current_user.likes.find_by(review_id: review.id).nil? %>
-                <%= link_to like_a_review_path(:review_id => review.id), :class=>"btn-default stat-item", :id => "R#{review.id}", :remote => true do %>
+                <%= link_to like_a_review_path(:review_id => review.id), :class=>"btn-default stat-item", :id => "R#{review.id}L", :remote => true do %>
                   <i class="fa fa-thumbs-up icon"></i> <%= review.likes.count%>
                 <% end%>
               <% else%>
-                <%= link_to unlike_a_review_path(:review_id => review.id), :class=>"stat-item" ,:id => "R#{review.id}", :remote => true do %>
+                <%= link_to unlike_a_review_path(:review_id => review.id), :class=>"stat-item" ,:id => "R#{review.id}L", :remote => true do %>
                   <i class="fa fa-thumbs-up icon"></i> <%= review.likes.count%>
                 <% end %>
               <%end%>
