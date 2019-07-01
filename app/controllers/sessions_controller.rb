@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
     end
     flash.now[:success] =
       t "authentication.controllers.sessions_controller.flash.login_success"
-    render :home
+    redirect_to root_path
   end
 
   def fail_login

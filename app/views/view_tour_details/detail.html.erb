@@ -5,7 +5,6 @@
         <div class="preview col-md-6">
           <div class="preview-pic tab-content">
             <div class="tab-pane active" id="pic-1" style="padding-top: 0px;">
-              <%# <img src="tour.jpg" style="width: 1000px;" /> %>
               <%= image_tag "#{@tour_detail.tour.image}",  alt: "Tour Details", class: "group list-group-image", style: "width: 1000px;" %>
             </div>
           </div>
@@ -88,18 +87,22 @@
       </span>
     </div>
   <% end%>
-  <div class="col-sm-16">
+  <div class="col-sm-16" id="listcomment">
     <% unless @reviews.nil? %>
       <%= will_paginate @reviews %>
       <% @reviews.each do |review| %>
-        <div class="panel panel-white post panel-shadow">
+        <div class="panel panel-white post panel-shadow" id="R<%= review.id%>">
           <div class="post-heading">
             <div class="pull-left image">
-              <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+              <%= link_to view_other_user_information_path(:user_id => review.user.id) do %>
+                <%= image_tag "#{review.user.avatar}",  alt: "Tour Image", class: "img-circle avatar" %>
+              <% end %>
             </div>
             <div class="pull-left meta">
               <div class="title h5">
-                <a href="#"><b> <%= review.user.name %> </b></a>
+                <%= link_to view_other_user_information_path(:user_id => review.user.id) do %>
+                  <b> <%= review.user.name %> </b>
+                <% end %>
               </div>
               <h6 class="text-muted time"> <%= review.updated_at %></h6>
             </div>

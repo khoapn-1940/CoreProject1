@@ -53,6 +53,11 @@ Rails.application.routes.draw do
   get "/view_my_booking", to: "self_management#view_my_booking"
   get "/delete_my_booking", to: "self_management#delete_my_booking"
   get "/view_my_review", to: "self_management#view_my_review"
+  get "/delete_my_review", to: "self_management#delete_my_review"
+  get "/view_my_information", to: "self_management#view_my_information"
+  get "/view_other_user_information", to: "self_management#view_other_user_information"
+  get "/edit_my_information", to: "self_management#edit_my_information"
+  post "/edit_my_information", to: "self_management#update_my_information"
   resources :users, only: [:new, :edit, :update, :create]
   resources :manage_users, only: [:new, :edit, :update]
 end

@@ -5,7 +5,14 @@
       <!------ Include the above in your HEAD tag ---------->
       <div class="item  col-xs-4 col-lg-4" style="height: 100%">
         <div class="thumbnail">
-          <%= image_tag "#{tour_detail.tour.image}",  alt: "like", class: "group list-group-image", style: "height: 400px;" %>
+          <% if logged_in? %>
+            <%= link_to view_detail_path(:tour_id => tour_detail.tour.id, :tour_detail_id => tour_detail.id) do %>
+              <%= image_tag "#{tour_detail.tour.image}",  alt: "like", class: "group list-group-image", style: "height: 400px;" %>
+            <% end %>
+          <% else %>
+            <%= link_to login_path do %>
+              <%= image_tag "#{tour_detail.tour.image}",  alt: "like", class: "group list-group-image", style: "height: 400px;" %>
+            <% end %>          <% end %>
           <div class="caption">
             <h4 class="group inner list-group-item-heading">
               <%= tour_detail.tour.name %></h4>

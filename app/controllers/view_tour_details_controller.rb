@@ -3,7 +3,7 @@ class ViewTourDetailsController < ApplicationController
     @tour_detail = TourDetail.find_by_id params[:tour_detail_id]
     @star = @tour_detail.tour.ratings.average(:star).to_i
     @self_star = current_user.ratings.find_by(tour_id: params[:tour_id])
-    @reviews = @tour_detail.tour.reviews.paginate(page: params[:page], per_page: 5)
+    @reviews = @tour_detail.tour.reviews.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
     @self_review = current_user.reviews.create(tour_id: params[:tour_id])
     @booking_tour = current_user.bookings.create(tour_detail_id: params[:tour_detail_id])
   end
@@ -66,11 +66,7 @@ class ViewTourDetailsController < ApplicationController
   def booking_tour
     @tour_detail = TourDetail.find_by_id params[:booking][:tour_detail_id]
     limit_booking = @tour_detail.tour_total
-    total_booking = @tour_detail.bookings
-    sum = 0
-    total_booking.each do |booking_one|
-      sum += booking_one.book_total
-    end
+    sum = @tour_detail.bookings.sum(:book_total)
     booking_number = params[:booking][:book_total].to_i
     if sum + booking_number > limit_booking
       flash[:danger] = t("manage_booking.booking_request_controller.flash.tour_full", count: (limit_booking - sum))

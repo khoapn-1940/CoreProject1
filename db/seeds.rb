@@ -1,11 +1,13 @@
 5.times do |n|
 name  = Faker::Name.name
+avatar = "avatar/#{n+1}.jpg"
 email = "admin#{n+1}@gmail.com"
 phone = "0359071558"
 bank_account = "0359071558"
 password = "password"
 role = "admin"
 User.create!(name: name,
+      avatar: avatar,
       email: email,
       phone: phone,
       bank_account: bank_account,
@@ -16,12 +18,14 @@ end
 
 50.times do |n|
     name  = Faker::Name.name
+    avatar = "avatar/#{n+1}.jpg"
     email = "nguyenkhoa#{n+1}@gmail.com"
     phone = "0359071558"
     bank_account = "0359071558"
     password = "password"
     role = "user"
     User.create!(name: name,
+          avatar: avatar,
           email: email,
           phone: phone,
           bank_account: bank_account,

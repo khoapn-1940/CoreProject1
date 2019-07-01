@@ -49,8 +49,8 @@
                 </li>
               <% elsif User.roles[session[:role]] == User.roles[:user] %>
                 <li>
-                  <%= link_to edit_user_path(current_user) do %>
-                    <i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Edit</span>
+                  <%= link_to view_my_information_path do %>
+                    <i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home Page</span>
                   <% end %>
                 </li>
                 <li>
@@ -107,37 +107,28 @@
             <div class="col-md-5">
               <div class="header-rightside">
                 <ul class="list-inline header-top pull-right">
-                  <li class="hidden-xs">
-                    <% if !User.roles[session[:role]].nil? %>
-                      <%= link_to logout_path,:class => "add-project" do %>
-                        Log Out
-                      <% end %>
-                    <% end %>
-                  </li>
-                  <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-                  <li>
-                    <a href="#" class="icon-info">
-                      <i class="fa fa-bell" aria-hidden="true"></i>
-                      <span class="label label-primary">3</span>
-                    </a>
-                  </li>
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <% if logged_in? %>
+                      <%= link_to "#", { :class => "dropdown-toggle", :"data-toggle" => "dropdown" } do %>
+                        <%= image_tag "#{current_user.avatar}" %>
+                        <b class="caret"></b>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <div class="navbar-content">
+                              <span><%= current_user.name %></span>
+                              <p class="text-muted small">
+                                <%= current_user.email %>
+                              </p>
+                              <div class="divider">
+                              </div>
+                              <%= link_to "Log out", logout_path, :class =>"view btn-sm active" %>
+                            </div>
+                          </li>
+                        </ul>
+                      <% end %>
+                    <% else %>
                       <%= image_tag "avatar.png" %>
-                      <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <div class="navbar-content">
-                          <span>JS Krishna</span>
-                          <p class="text-muted small">
-                            me@jskrishna.com
-                          </p>
-                          <div class="divider">
-                          </div>
-                          <a href="#" class="view btn-sm active">View Profile</a>
-                        </div>
-                      </li>
-                    </ul>
+                    <% end %>
                   </li>
                 </ul>
               </div>
