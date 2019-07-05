@@ -36,6 +36,7 @@ class BookingsController < ApplicationController
     @limit_booking = @tour_detail.tour_total
     @sum = @tour_detail.bookings.sum(:book_total)
     @booking_number = params[:booking][:book_total].to_i
+    @payment = Payment.new
   end
 
   def handle_booking_tour

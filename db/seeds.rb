@@ -72,3 +72,9 @@
         tour_id = n % 20 + 1
         Review.create!(content: content, user_id: user_id, tour_id: tour_id)
         end
+    100.times do |n|
+        method = "Internet Banking"
+        content = "Booking Tour"
+        booking_id = n+1
+        Payment.create!(method: method, content: content, booking_id: booking_id)
+    end

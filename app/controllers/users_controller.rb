@@ -34,10 +34,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    if params[:user][:image].present?
-      uploaded_io = params[:user][:image]
-      @avatar = upload "tour", uploaded_io
-    end
     params.require(:user).permit :name, :email, :phone, :bank_account,
       :password, :password_confirmation, :avatar
   end

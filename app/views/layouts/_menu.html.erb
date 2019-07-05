@@ -25,13 +25,23 @@
     <% end %>
   </li>
   <li>
-    <%= link_to "#" do %>
+    <%= link_to admin_payments_path do %>
       <i class="fa fa-money"></i><span class="hidden-xs hidden-sm"> <%= t "views.title.manage_revenue" %> </span>
     <% end %>
   </li>
   <li>
     <%= link_to admin_categories_path do %>
       <i class="fa fa-list"></i><span class="hidden-xs hidden-sm"> <%= t "views.title.manage_category" %> </span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to view_my_review_path do %>
+      <i class="fa fa-car"></i><span class="hidden-xs hidden-sm"> <%= t "views.title.view_my_review" %> </span>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to view_my_booking_path do %>
+      <i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm"> <%= t "views.title.view_my_booking" %> </span>
     <% end %>
   </li>
 <% elsif is_user? %>

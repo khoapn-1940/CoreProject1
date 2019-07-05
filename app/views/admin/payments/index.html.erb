@@ -1,0 +1,82 @@
+<%= will_paginate @bookings %>
+<div id="invoice">
+  <div class="invoice overflow-auto">
+    <div style="min-width: 600px">
+      <header>
+        <div class="row">
+          <div class="col">
+            <a target="_blank" href="https://lobianijs.com">
+              <img src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png" data-holder-rendered="true" />
+              <div class="toolbar hidden-print">
+                <hr>
+              </div>
+            </a>
+          </div>
+          <div class="col company-details">
+            <h2 class="name">
+              <a target="_blank" href="https://lobianijs.com">
+                <%= current_user.name%>
+              </a>
+            </h2>
+            <div>455 Foggy Heights, AZ 85004, US</div>
+            <div><%= current_user.phone%></div>
+            <div><a href="mailto:<%= current_user.email %>"><%= current_user.email %></a></div>
+          </div>
+        </div>
+      </header>
+      <main>
+        <div class="row contacts">
+          <div class="col invoice-details">
+            <h1 class="invoice-id">Reported Time </h1>
+            <div class="date">Date of Invoice: <%= l Time.now.beginning_of_month, format: :long %></div>
+            <div class="date">Due Date: <%= l Time.now.end_of_month, format: :long %></div>
+          </div>
+        </div>
+        <div class="text-left">
+          <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+          <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+        </div>
+        <table border="0" cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>
+              <th> <%= t("header.booking_id") %> </th>
+              <th> <%= t("views.tag.username") %> </th>
+              <th class="text-left"> <%= t("views.tag.description") %> </th>
+              <th class="text-right"> <%= t("views.tag.slot") %> </th>
+              <th class="text-right"> <%= t("views.tag.price") %> </th>
+              <th class="text-right no"> <%= t("views.tag.total_1") %> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @bookings.each do |booking| %>
+              <tr>
+                <td class=><%= booking.id%></td>
+                <td ><%= booking.user.name%></td>
+                <td class="text-left">
+                  <h3><%= booking.tour_detail.tour.name%></h3>
+                  <%= booking.tour_detail.tour.description%></td>
+                <td class="unit"> <%= booking.book_total %> </td>
+                <td class="qty"> <%= booking.tour_detail.price.round(0) %> $</td>
+                <td class="total"> <%= booking.tour_detail.price.round(0) * booking.book_total %> $</td>
+              </tr>
+            <% end %>
+          </tbody>
+          <tfoot>
+            <td colspan="2"></td>
+            <td colspan="2">TOTAL</td>
+            <td> $<%= @sum%> </td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="notices">
+        <div> <%= t("views.tag.notice") %> :</div>
+        <div class="notice"> <%= t("views.tag.not_include_tax") %> </div>
+      </div>
+    </main>
+    <footer>
+      <%= t("views.tag.sun") %>
+    </footer>
+  </div>
+  <div></div>
+</div>
+</div>

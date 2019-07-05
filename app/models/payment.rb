@@ -1,4 +1,4 @@
 class Payment < ApplicationRecord
   belongs_to :booking
-  belongs_to :tour
+  scope :order_by_time_desc, ->{order(created_at: :desc)}
 end

@@ -3,6 +3,7 @@ class SelfManagementController < ApplicationController
     @my_booking = current_user.bookings.order_by_time_desc.paginate(
       page: params[:page], per_page: Settings.booking_per_page
     )
+    @payment = Payment.new
   end
 
   def view_my_review

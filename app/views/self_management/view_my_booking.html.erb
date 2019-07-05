@@ -43,9 +43,30 @@
               <% else%>
                 <p> <%= t("views.tag.average") %> <%= booking.tour_detail.tour.ratings.average(:star) %><small> / </small><%= booking.tour_detail.tour.ratings.count %> <%= t("views.tag.vote")%> </p>
               <% end%>
-              <%= link_to booking_path(id: booking.id), method: "DELETE", remote: true do %>
-                <button type="button" class="btn-danger "> Delete </button>
-              <%end %>
+              <% if !paid? booking.id %>
+                <%= form_for @payment, url: payments_path, method: :POST do |f|%>
+                  <%= f.hidden_field :booking_id, value: booking.id %>
+                  <%= f.hidden_field :method, value: "Internet Banking" %>
+                  <%= f.hidden_field :content, value: booking.tour_detail.tour.name %>
+                  <article>
+                    <% if flash[:danger].present? %>
+                      <div id="error_explanation">
+                        <p><%= flash[:danger] %></p>
+                      </div>
+                    <% end %>
+                  </article>
+                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="pk_test_1oTxt1Q6uTxKc7X094Is5oM100pdIpvMo1"
+                  data-description="Pay Booking Tour"
+                  data-amount="<%= booking.tour_detail.price %>"
+                  data-locale="auto"></script>
+                  <%= link_to booking_path(id: booking.id), method: "DELETE", remote: true do %>
+                    <button type="button" class="btn-danger "> <%= t("views.tag.delete") %> </button>
+                  <%end %>
+                <% end %>
+              <% else%>
+                <button type="button" class="btn-danger "> <%= t("views.tag.paid") %> </button>
+              <% end %>
             </div>
           </div>
         <% end %>

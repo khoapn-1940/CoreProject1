@@ -1,43 +1,46 @@
 <div class="container">
-  <%= will_paginate @tour_details %>
-  <div id="products" class="row list-group">
-    <% @tour_details.each do |tour_detail| %>
-      <!------ Include the above in your HEAD tag ---------->
-      <div class="item  col-xs-4 col-lg-4" style="height: 100%">
-        <div class="thumbnail">
-          <% if logged_in? %>
-            <%= link_to new_tour_detail_path(tour_detail_id: tour_detail.id, tour_id: tour_detail.tour.id) do %>
-              <%= image_tag "#{tour_detail.tour.image}",  alt: "like", class: "group list-group-image", style: "height: 400px;" %>
-            <% end %>
-          <% else %>
-            <%= link_to login_path do %>
-              <%= image_tag "#{tour_detail.tour.image}",  alt: "like", class: "group list-group-image", style: "height: 400px;" %>
-            <% end %>          <% end %>
-          <div class="caption">
-            <h4 class="group inner list-group-item-heading">
-              <%= tour_detail.tour.name %></h4>
-            <p class="group inner list-group-item-text">
-              <%= tour_detail.tour.description %></p>
-            <br>
-            <div class="row">
-              <div class="col-xs-12 col-md-6">
-                <p class="lead">
-                  <%= tour_detail.price %> $ </p>
-              </div>
-              <%= l tour_detail.time_start, format: :long %>
+  <% if @tour_details.present? %>
+    <%= will_paginate @tour_details %>
+    <div id="products" class="row list-group">
+      <% @tour_details.each do |tour_detail| %>
+        <div class="item  col-xs-4 col-lg-4" style="height: 100%">
+          <div class="thumbnail">
+            <% if logged_in? %>
+              <%= link_to new_tour_detail_path(tour_detail_id: tour_detail.id, tour_id: tour_detail.tour.id) do %>
+                <%= image_tag "#{tour_detail.tour.image}",  alt: "like", class: "group list-group-image", style: "height: 400px;" %>
+              <% end %>
+            <% else %>
+              <%= link_to login_path do %>
+                <%= image_tag "#{tour_detail.tour.image}",  alt: "like", class: "group list-group-image", style: "height: 400px;" %>
+              <% end %>          <% end %>
+            <div class="caption">
+              <h4 class="group inner list-group-item-heading">
+                <%= tour_detail.tour.name %></h4>
+              <p class="group inner list-group-item-text">
+                <%= tour_detail.tour.description %></p>
               <br>
-              <%= l tour_detail.time_end, format: :long %>
-              <div class="col-xs-12 col-md-12" style="text-align: right,display: inline-block">
-                <% if logged_in? %>
-                  <%= link_to t("views.tag.booking"), new_tour_detail_path(tour_detail_id: tour_detail.id, tour_id: tour_detail.tour.id), class: "btn btn-success" %>
-                <% else %>
-                  <%= link_to t("views.tag.booking"), login_path, class: "btn btn-success" %>
-                <% end %>
+              <div class="row">
+                <div class="col-xs-12 col-md-6">
+                  <p class="lead">
+                    <%= tour_detail.price %> $ </p>
+                </div>
+                <%= l tour_detail.time_start, format: :long %>
+                <br>
+                <%= l tour_detail.time_end, format: :long %>
+                <div class="col-xs-12 col-md-12" style="text-align: right,display: inline-block">
+                  <% if logged_in? %>
+                    <%= link_to t("views.tag.booking"), new_tour_detail_path(tour_detail_id: tour_detail.id, tour_id: tour_detail.tour.id), class: "btn btn-success" %>
+                  <% else %>
+                    <%= link_to t("views.tag.booking"), login_path, class: "btn btn-success" %>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% else %>
+    <h1><%= t("views.tag.search_not_found") %></h1>
+  <% end %>
 </div>

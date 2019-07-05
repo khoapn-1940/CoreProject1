@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  scope "(:locale)", locale: /en|vi/ do
+
   root "pages#home"
   get "/error", to: "errors#handle404"
   get "/signup", to: "users#new"
@@ -6,6 +8,7 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
+  get "/search", to: "pages#search"
   # get "/manage_users", to: "manage_users#new"
   # get "/user_destroy", to: "manage_users#destroy"
 
@@ -56,6 +59,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:new, :destroy]
   resources :users, only: [:new, :edit, :update, :create]
   resources :manage_users, only: [:new, :edit, :update]
+  resources :payments, only: [:create]
 
   namespace :admin do
     resources :users, except: []
@@ -64,5 +68,7 @@ Rails.application.routes.draw do
     resources :tours, except: []
     resources :tour_details, except: []
     resources :bookings, except: []
+    resources :payments, only: [:index]
   end
+end
 end
